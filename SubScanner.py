@@ -29,6 +29,8 @@ def print_banner():
 def check_ssl_certificate(hostname):
     try:
         context = ssl.create_default_context()
+        context.check_hostname = False
+        context.verify_mode = ssl.CERT_NONE
         with socket.create_connection((hostname, 443), timeout=3) as sock:
             with context.wrap_socket(sock, server_hostname=hostname) as ssock:
                 return True
@@ -82,10 +84,17 @@ def find_subdomains(domain):
             ssl_status[full_subdomain] = has_ssl
             if check_http_status(full_subdomain):
                 accessible.add(full_subdomain)
-        except:
+        except Exception as e:
             pass
 
-    with ThreadPoolExecutor(max_workers=30) as executor:
+    # Thread sayısını sisteme göre ayarla
+    system_name = platform.system().lower()
+    if "android" in system_name or "termux" in system_name:
+        max_workers = 10
+    else:
+        max_workers = 30
+
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
         executor.map(check_subdomain, wordlist)
 
     print("=" * 70)
