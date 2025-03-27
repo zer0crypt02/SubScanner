@@ -8,11 +8,18 @@ Python3 ile geliştirdiğim SubScanner aracı girilen bir Domain üzerinden yola
 📍 Keşfedilen alt alan adlarının durum kodları kontrol edilir. Durum kodu 200 yani "Girilebilir" ise "Erişilebilir" adındaki bir listeye alınırlar.
 📍 Bulunan alt alan adlarının SSL sertifikasına sahip olup olmadığı kontrol edilir eğer bir alt alan adının SSL sertifikası varsa ```[+] SSL Sertifikası Var``` mesajı, yoksa ```[-]SSL Sertifikası Yok``` mesajı verilir.
 
-# Kurulum ve Kullanım:
+# Kurulum ve Kullanım(Kali Linux, Windows ve MacOS):
 1 - ```git clone https://github.com/zer0crypr02/SubScanner.git```<br>
 2 - ```cd SubScanner```<br>
 3 - ```pip3 install requirements.txt```<br>
-4 - ```python3 SubScanner.py domain.com```<br>
+4 - ```python3 SubScanner.py example.com```<br>
+
+# Kurulum ve Kullanım(Termux):
+1 - ```pkg update && pkg upgrade```<br>
+2 - ```git clone https://github.com/zer0crypr02/SubScanner.git```<br>
+2 - ```pkg install python```<br>
+3 - ```pip install -r requirements.txt```<br>
+4 - ```python3 SubScanner.py example.com```<br>
 
 # Ekstra:
 Araç daha geliştirilme durumundadır. Eklememi düşündüğünüz özellikler varsa bana<br>
